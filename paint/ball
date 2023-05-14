@@ -1,0 +1,36 @@
+-- Scriptin çalışması için LocalScript içine koyun
+
+local gui = Instance.new("ScreenGui")
+gui.Name = "BanGUI"
+gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 200, 0, 50)
+frame.Position = UDim2.new(1, -220, 0, 10)
+frame.BackgroundColor3 = Color3.new(1, 1, 1)
+frame.BorderSizePixel = 0
+frame.Visible = false
+frame.Parent = gui
+
+local button = Instance.new("TextButton")
+button.Size = UDim2.new(1, 0, 1, 0)
+button.BackgroundColor3 = Color3.new(1, 0, 0)
+button.BorderSizePixel = 0
+button.Text = "Kill All"
+button.TextColor3 = Color3.new(1, 1, 1)
+button.FontSize = Enum.FontSize.Size18
+button.Parent = frame
+
+local function banPlayer(player)
+    player:Kick("Efe isimli şahıs hile kullanmış O: [ Kısaca Znactr tarafından banlandın eşşek]")
+end
+
+button.MouseButton1Click:Connect(function()
+    banPlayer(game.Players.LocalPlayer)
+end)
+
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.Escape then
+        frame.Visible = not frame.Visible
+    end
+end)
